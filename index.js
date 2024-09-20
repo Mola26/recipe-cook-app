@@ -10,8 +10,22 @@ function displayRecipes(recipes) {
     recipeImageEl.src = recipe.image;
     recipeImageEl.alt = "recipe image";
 
-    recipeItemEl.appendChild(recipeImageEl);
+    recipeTitleEl = document.createElement("h2");
+    recipeTitleEl.innerText = recipe.title;
 
+    recipeIngredientsEl = document.createElement("p");
+    recipeIngredientsEl.innerHTML = `<strong>Ingredients:</strong> ${recipe.extendedIngredients
+      .map((ingredient) => ingredient.original)
+      .join(", ")}`;
+
+    recipeLinkEl = document.createElement("a");
+    recipeLinkEl.href = recipe.sourceUrl;
+    recipeLinkEl.innerText = "View Recipe";
+
+    recipeItemEl.appendChild(recipeImageEl);
+    recipeItemEl.appendChild(recipeTitleEl);
+    recipeItemEl.appendChild(recipeIngredientsEl);
+    recipeItemEl.appendChild(recipeLinkEl);
     recipeListEl.appendChild(recipeItemEl);
   });
 }
